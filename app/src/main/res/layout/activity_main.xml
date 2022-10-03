@@ -10,6 +10,7 @@
     >
 <!--Text view where the input of the User is shown-->
     <TextView
+        android:id="@+id/tvInput"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:text="@string/_0"
