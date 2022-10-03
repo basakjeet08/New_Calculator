@@ -198,7 +198,9 @@ class MainActivity : AppCompatActivity() {
             if(i == '+' || i == '-' || i == '*' || i == '/'){
                 num2 = calculation(i,num1,num2)
                 num1 = 0.0
+                prevOperator = i
                 isdecimal = false
+                decimalCount = 10.0
             }
             else if(i == '.'){
                 isdecimal = true
@@ -215,7 +217,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun calculation(operator:Char , num1 : Double , num2 : Double) : Double{
-
-        return num2
+        var output = 0.0
+        when(operator){
+            ' ' -> output = 0.0
+            '+' -> output = (num2+num1)
+            '-' -> output = (num2-num1)
+            '*' -> output = (num2*num1)
+            '/' -> output = (num2/num1)
+        }
+        return output
     }
 }
