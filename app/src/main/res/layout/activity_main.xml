@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding = "16dp"
     >
-
+<!--Text view where the input of the User is shown-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -20,6 +20,7 @@
         android:gravity="bottom|end"
 
         />
+    <!--First layout where the button 7..8..9.../ is there-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,6 +69,8 @@
             android:layout_margin="4dp"
             />
     </LinearLayout>
+
+    <!--Layout where the button 4..5..6..* is there-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,6 +119,8 @@
             android:layout_margin="4dp"
             />
     </LinearLayout>
+
+    <!--Layout where the Button 1..2..3..- is there-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -164,6 +169,8 @@
             android:layout_margin="4dp"
             />
     </LinearLayout>
+
+    <!--Layout where the Button 0..CLR...+ is there-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -182,10 +189,44 @@
             android:layout_margin="4dp"
             />
         <Button
+            android:id="@+id/btnClear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:text="@string/clear"
+            android:backgroundTint="@color/grey"
+            android:textColor="@color/black"
+            android:layout_margin="4dp"
             />
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/add"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/grey"
+            android:layout_margin="4dp"
+            />
+    </LinearLayout>
 
+    <!--Final layout where the Button = is there-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+
+        <Button
+            android:id="@+id/btnEquals"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/equals"
+            android:backgroundTint="@color/grey"
+            android:textColor="@color/black"
+            android:layout_margin="4dp"
+            />
     </LinearLayout>
 </LinearLayout>
