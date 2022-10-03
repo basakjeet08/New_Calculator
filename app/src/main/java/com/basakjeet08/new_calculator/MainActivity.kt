@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity() {
         var prevOperator = ' '
         for(i in temp){
             if(i == '+' || i == '-' || i == '*' || i == '/'){
-                num2 = calculation(i,num1,num2)
+                num2 = calculation(prevOperator,num1,num2)
                 num1 = 0.0
                 prevOperator = i
                 isdecimal = false
@@ -219,7 +219,7 @@ class MainActivity : AppCompatActivity() {
     private fun calculation(operator:Char , num1 : Double , num2 : Double) : Double{
         var output = 0.0
         when(operator){
-            ' ' -> output = 0.0
+            ' ' -> output = num1
             '+' -> output = (num2+num1)
             '-' -> output = (num2-num1)
             '*' -> output = (num2*num1)
