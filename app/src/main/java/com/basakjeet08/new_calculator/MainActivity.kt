@@ -193,7 +193,8 @@ class MainActivity : AppCompatActivity() {
     //Function which works after we hit Equal too operator
     private fun flowControl(tvInput:TextView) : String{
         var temp = tvInput.text.toString()
-        temp = temp.substring(temp.indexOf('\n'))
+        if(findNewLine(temp) != -1)
+                temp = temp.substring(findNewLine(temp)+1)
         var num1 = 0.0
         var num2 = 0.0
         var isdecimal = false
@@ -220,7 +221,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         num2 = calculation(prevOperator,num1,num2)
-        return "$temp\n${num2.toString()}"
+        return "$temp\n$num2"
     }
     private fun calculation(operator:Char , num1 : Double , num2 : Double) : Double{
         var output = 0.0
@@ -232,5 +233,12 @@ class MainActivity : AppCompatActivity() {
             '/' -> output = (num2/num1)
         }
         return output
+    }
+    private fun findNewLine(temp:String) : Int{
+        for(i in temp.indices){
+            if(temp[i] == '\n')
+                return i
+        }
+        return -1
     }
 }
