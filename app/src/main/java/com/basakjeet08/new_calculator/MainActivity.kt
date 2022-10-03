@@ -102,7 +102,8 @@ class MainActivity : AppCompatActivity() {
             if(lastOperator && !isNumeric){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = "$temp+"
+                temp = "$temp+"
+                tvInput.text = temp
                 lastOperator = true
                 isNumeric = false
             }
@@ -122,7 +123,8 @@ class MainActivity : AppCompatActivity() {
             if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = "$temp-"
+                temp = "$temp-"
+                tvInput.text = temp
                 lastOperator = true
                 isNumeric = false
             }
@@ -142,7 +144,8 @@ class MainActivity : AppCompatActivity() {
             if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = "$temp*"
+                temp = "$temp*"
+                tvInput.text = temp
                 lastOperator = true
                 isNumeric = false
             }
@@ -162,7 +165,8 @@ class MainActivity : AppCompatActivity() {
             if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = "$temp/"
+                temp = "$temp/"
+                tvInput.text = temp
                 lastOperator = true
                 isNumeric = false
             }
