@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val btnDivide : Button = findViewById(R.id.btnDivide)
         val btnClear : Button = findViewById(R.id.btnClear)
         val btnEquals : Button = findViewById(R.id.btnEquals)
-
+        val btnDelete : Button = findViewById(R.id.btnDelete)
 
         //Other Functionality Variables
         var lastOperator = false
@@ -211,7 +211,24 @@ class MainActivity : AppCompatActivity() {
                 tvInput.append("0")
                 isDecimal = false
             }
-            val temp = flowControl(tvInput.text.toString())
+            var temp = tvInput.text.toString()
+            if(temp[temp.length-1] != '+' && temp[temp.length-1] != '-' && temp[temp.length-1] != '*' && temp[temp.length-1] != '/'){
+                temp = flowControl(temp)
+                isDecimal = true
+            }
+            else
+                temp = "Invalid"
+            tvInput.text = temp
+        }
+
+        //Delete Button Block
+        btnDelete.setOnClickListener {
+            var temp = tvInput.text.toString()
+            if(temp.isNotEmpty()) {
+                if (temp[temp.length - 1] == '.')
+                    isDecimal = false
+                temp = temp.substring(0, (temp.length - 1))
+            }
             tvInput.text = temp
         }
     }
