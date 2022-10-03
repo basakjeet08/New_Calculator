@@ -183,11 +183,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Equals to block
-        btnEquals.setOnClickListener { flowControl(tvInput) }
+        btnEquals.setOnClickListener {
+            val temp = flowControl(tvInput)
+            tvInput.text = temp
+        }
     }
 
     //Function which works after we hit Equal too operator
-    private fun flowControl(tvInput:TextView){
+    private fun flowControl(tvInput:TextView) : String{
         var temp = tvInput.text.toString()
         var num1 = 0.0
         var num2 = 0.0
@@ -213,8 +216,9 @@ class MainActivity : AppCompatActivity() {
                 else
                     num1 = num1*10 + i.digitToInt()
             }
-
         }
+        num2 = calculation(prevOperator,num1,num2)
+        return "$temp\n${num2.toString()}"
     }
     private fun calculation(operator:Char , num1 : Double , num2 : Double) : Double{
         var output = 0.0
