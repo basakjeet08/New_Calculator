@@ -37,91 +37,151 @@ class MainActivity : AppCompatActivity() {
 
 
         //Other Functionality Variables
-        var lastOperator = true
+        var lastOperator = false
+        var isNumeric = false
 
 
-
+        // All Buttons from 0 to 9 function functionality are added here below
         btnZero.setOnClickListener {
             tvInput.append("0")
             lastOperator = false
+            isNumeric = true
         }
         btnOne.setOnClickListener {
             tvInput.append("1")
             lastOperator = false
+            isNumeric = true
         }
         btnTwo.setOnClickListener {
             tvInput.append("2")
             lastOperator = false
+            isNumeric = true
         }
         btnThree.setOnClickListener {
             tvInput.append("3")
             lastOperator = false
+            isNumeric = true
         }
         btnFour.setOnClickListener {
             tvInput.append("4")
             lastOperator = false
+            isNumeric = true
         }
         btnFive.setOnClickListener {
             tvInput.append("5")
             lastOperator = false
+            isNumeric = true
         }
         btnSix.setOnClickListener {
             tvInput.append("6")
             lastOperator = false
+            isNumeric = true
         }
         btnSeven.setOnClickListener {
             tvInput.append("7")
             lastOperator = false
+            isNumeric = true
         }
         btnEight.setOnClickListener {
             tvInput.append("8")
             lastOperator = false
+            isNumeric = true
         }
         btnNine.setOnClickListener {
             tvInput.append("9")
             lastOperator = false
+            isNumeric = true
         }
+
+        /* When Add Button is Clicked
+        *       1. If no Number is entered before it then it won't do anything
+        *       2. If it is pressed right after another operator then the previous one is Overwritten
+        *       3. If the previous entered is a digit then one + sign is added
+        * */
         btnAdd.setOnClickListener {
-            if(lastOperator){
+            if(lastOperator && !isNumeric){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = temp
+                tvInput.text = "$temp+"
+                lastOperator = true
+                isNumeric = false
             }
-            else
+            if(isNumeric && !lastOperator) {
                 tvInput.append("+")
+                lastOperator = true
+                isNumeric = false
+            }
         }
+
+        /* When Subtract Button is Clicked
+        *       1. If no Number is entered before it then it won't do anything
+        *       2. If it is pressed right after another operator then the previous one is Overwritten
+        *       3. If the previous entered is a digit then one - sign is added
+        * */
         btnSubtract.setOnClickListener {
             if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = temp
+                tvInput.text = "$temp-"
+                lastOperator = true
+                isNumeric = false
             }
-            else
+            if(isNumeric && !lastOperator) {
                 tvInput.append("-")
+                lastOperator = true
+                isNumeric = false
+            }
         }
+
+        /* When Multiply Button is Clicked
+        *       1. If no Number is entered before it then it won't do anything
+        *       2. If it is pressed right after another operator then the previous one is Overwritten
+        *       3. If the previous entered is a digit then one * sign is added
+        * */
         btnMultiply.setOnClickListener {
             if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = temp
+                tvInput.text = "$temp*"
+                lastOperator = true
+                isNumeric = false
             }
-            else
+            if(isNumeric && !lastOperator) {
                 tvInput.append("*")
-
+                lastOperator = true
+                isNumeric = false
+            }
         }
+
+        /* When Divide Button is Clicked
+        *       1. If no Number is entered before it then it won't do anything
+        *       2. If it is pressed right after another operator then the previous one is Overwritten
+        *       3. If the previous entered is a digit then one * sign is added
+        * */
         btnDivide.setOnClickListener {
             if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
-                tvInput.text = temp
+                tvInput.text = "$temp/"
+                lastOperator = true
+                isNumeric = false
             }
-            else
+            if(isNumeric && !lastOperator) {
                 tvInput.append("/")
+                lastOperator = true
+                isNumeric = false
+            }
         }
-        btnClear.setOnClickListener { tvInput.text = "" }
+
+        // When this button is pressed it clears the whole textView and resets the boolean values used for functionality
+        btnClear.setOnClickListener {
+            tvInput.text = ""
+            lastOperator = false
+            isNumeric = false
+        }
+
+        // Equals to block
         btnEquals.setOnClickListener { flowControl(tvInput) }
-
-
     }
 
 
