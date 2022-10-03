@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
         start()
     }
 
-
-
     //Start of the Program
     private fun start(){
         // All the UI button and TextView variable Declaration
@@ -188,9 +186,25 @@ class MainActivity : AppCompatActivity() {
         btnEquals.setOnClickListener { flowControl(tvInput) }
     }
 
-
     //Function which works after we hit Equal too operator
     private fun flowControl(tvInput:TextView){
+        var temp = tvInput.text.toString()
+        var num1 = 0.0
+        var num2 = 0.0
+        var dice = false
+        var diceCount = 1
+        var prevOperator = ' '
+        for(i in temp){
+            if(i == '+' || i == '-' || i == '*' || i == '/'){
 
+            }
+            else if(i == '.'){
+                dice = true
+            }
+            else if(dice){
+                num1 += ((i.digitToInt()).toDouble())/(diceCount*10)
+                diceCount*=10
+            }
+        }
     }
 }
