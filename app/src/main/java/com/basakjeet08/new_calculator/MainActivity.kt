@@ -2,7 +2,6 @@ package com.basakjeet08.new_calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils.indexOf
 import android.widget.Button
 import android.widget.TextView
 
@@ -185,34 +184,36 @@ class MainActivity : AppCompatActivity() {
 
         // Equals to block
         btnEquals.setOnClickListener {
-            val temp = flowControl(tvInput)
+            val temp = flowControl(tvInput.text.toString())
             tvInput.text = temp
         }
     }
 
     //Function which works after we hit Equal too operator
-    private fun flowControl(tvInput:TextView) : String{
-        var temp = tvInput.text.toString()
-        if(findNewLine(temp) != -1)
-                temp = temp.substring(findNewLine(temp)+1)
+    private fun flowControl(input:String) : String{
         var num1 = 0.0
         var num2 = 0.0
-        var isdecimal = false
+        var decimal = false
         var decimalCount = 10.0
         var prevOperator = ' '
+        var temp = input
+        if(temp.contains('\n'))
+            temp = temp.substring((temp.indexOf('\n')+1))
+
+        // Loop for Iterating and Calculating the Expression
         for(i in temp){
             if(i == '+' || i == '-' || i == '*' || i == '/'){
                 num2 = calculation(prevOperator,num1,num2)
                 num1 = 0.0
                 prevOperator = i
-                isdecimal = false
+                decimal = false
                 decimalCount = 10.0
             }
             else if(i == '.'){
-                isdecimal = true
+                decimal = true
             }
             else{
-                if(isdecimal){
+                if(decimal){
                     num1 += ((i.digitToInt()).toDouble())/decimalCount
                     decimalCount*=10.0
                 }
@@ -223,6 +224,8 @@ class MainActivity : AppCompatActivity() {
         num2 = calculation(prevOperator,num1,num2)
         return "$temp\n$num2"
     }
+
+    // returns the Calculated value according to the given operator
     private fun calculation(operator:Char , num1 : Double , num2 : Double) : Double{
         var output = 0.0
         when(operator){
@@ -233,12 +236,5 @@ class MainActivity : AppCompatActivity() {
             '/' -> output = (num2/num1)
         }
         return output
-    }
-    private fun findNewLine(temp:String) : Int{
-        for(i in temp.indices){
-            if(temp[i] == '\n')
-                return i
-        }
-        return -1
     }
 }
