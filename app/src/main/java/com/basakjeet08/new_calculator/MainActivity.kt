@@ -191,20 +191,31 @@ class MainActivity : AppCompatActivity() {
         var temp = tvInput.text.toString()
         var num1 = 0.0
         var num2 = 0.0
-        var dice = false
-        var diceCount = 1
+        var isdecimal = false
+        var decimalCount = 10.0
         var prevOperator = ' '
         for(i in temp){
             if(i == '+' || i == '-' || i == '*' || i == '/'){
-
+                num2 = calculation(i,num1,num2)
+                num1 = 0.0
+                isdecimal = false
             }
             else if(i == '.'){
-                dice = true
+                isdecimal = true
             }
-            else if(dice){
-                num1 += ((i.digitToInt()).toDouble())/(diceCount*10)
-                diceCount*=10
+            else{
+                if(isdecimal){
+                    num1 += ((i.digitToInt()).toDouble())/decimalCount
+                    decimalCount*=10.0
+                }
+                else
+                    num1 = num1*10 + i.digitToInt()
             }
+
         }
+    }
+    private fun calculation(operator:Char , num1 : Double , num2 : Double) : Double{
+
+        return num2
     }
 }
