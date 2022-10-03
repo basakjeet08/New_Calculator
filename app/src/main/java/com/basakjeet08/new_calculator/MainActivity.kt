@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val btnSeven : Button = findViewById(R.id.btnSeven)
         val btnEight : Button = findViewById(R.id.btnEight)
         val btnNine : Button = findViewById(R.id.btnNine)
+        val btnDecimal : Button = findViewById(R.id.btnDecimal)
         val btnAdd : Button = findViewById(R.id.btnAdd)
         val btnSubtract : Button = findViewById(R.id.btnSubtract)
         val btnMultiply : Button = findViewById(R.id.btnMultiply)
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         //Other Functionality Variables
         var lastOperator = false
         var isNumeric = false
-
+        var isDecimal = false
 
         // All Buttons from 0 to 9 function functionality are added here below
         btnZero.setOnClickListener {
@@ -91,13 +92,23 @@ class MainActivity : AppCompatActivity() {
             isNumeric = true
         }
 
+        btnDecimal.setOnClickListener {
+            if(!isDecimal) {
+                tvInput.append(".")
+                isDecimal = true
+            }
+        }
         /* When Add Button is Clicked
         *       1. If no Number is entered before it then it won't do anything
         *       2. If it is pressed right after another operator then the previous one is Overwritten
         *       3. If the previous entered is a digit then one + sign is added
         * */
         btnAdd.setOnClickListener {
-            if(lastOperator && !isNumeric){
+            if(isDecimal){
+                tvInput.append("0+")
+                isDecimal = false
+            }
+            else if(lastOperator && !isNumeric){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
                 temp = "$temp+"
@@ -105,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 lastOperator = true
                 isNumeric = false
             }
-            if(isNumeric && !lastOperator) {
+            else if(isNumeric && !lastOperator) {
                 tvInput.append("+")
                 lastOperator = true
                 isNumeric = false
@@ -118,7 +129,11 @@ class MainActivity : AppCompatActivity() {
         *       3. If the previous entered is a digit then one - sign is added
         * */
         btnSubtract.setOnClickListener {
-            if(lastOperator){
+            if(isDecimal){
+                tvInput.append("0-")
+                isDecimal = false
+            }
+            else if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
                 temp = "$temp-"
@@ -126,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 lastOperator = true
                 isNumeric = false
             }
-            if(isNumeric && !lastOperator) {
+            else if(isNumeric && !lastOperator) {
                 tvInput.append("-")
                 lastOperator = true
                 isNumeric = false
@@ -139,7 +154,11 @@ class MainActivity : AppCompatActivity() {
         *       3. If the previous entered is a digit then one * sign is added
         * */
         btnMultiply.setOnClickListener {
-            if(lastOperator){
+            if(isDecimal){
+                tvInput.append("0*")
+                isDecimal = false
+            }
+            else if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
                 temp = "$temp*"
@@ -147,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 lastOperator = true
                 isNumeric = false
             }
-            if(isNumeric && !lastOperator) {
+            else if(isNumeric && !lastOperator) {
                 tvInput.append("*")
                 lastOperator = true
                 isNumeric = false
@@ -160,7 +179,11 @@ class MainActivity : AppCompatActivity() {
         *       3. If the previous entered is a digit then one * sign is added
         * */
         btnDivide.setOnClickListener {
-            if(lastOperator){
+            if(isDecimal){
+                tvInput.append("0/")
+                isDecimal = false
+            }
+            else if(lastOperator){
                 var temp = tvInput.text.toString()
                 temp = temp.substring(0,(temp.length-1))
                 temp = "$temp/"
@@ -168,7 +191,7 @@ class MainActivity : AppCompatActivity() {
                 lastOperator = true
                 isNumeric = false
             }
-            if(isNumeric && !lastOperator) {
+            else if(isNumeric && !lastOperator) {
                 tvInput.append("/")
                 lastOperator = true
                 isNumeric = false
@@ -184,6 +207,10 @@ class MainActivity : AppCompatActivity() {
 
         // Equals to block
         btnEquals.setOnClickListener {
+            if(isDecimal) {
+                tvInput.append("0")
+                isDecimal = false
+            }
             val temp = flowControl(tvInput.text.toString())
             tvInput.text = temp
         }
