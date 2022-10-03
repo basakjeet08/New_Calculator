@@ -2,6 +2,7 @@ package com.basakjeet08.new_calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.indexOf
 import android.widget.Button
 import android.widget.TextView
 
@@ -192,6 +193,7 @@ class MainActivity : AppCompatActivity() {
     //Function which works after we hit Equal too operator
     private fun flowControl(tvInput:TextView) : String{
         var temp = tvInput.text.toString()
+        temp = temp.substring(temp.indexOf('\n'))
         var num1 = 0.0
         var num2 = 0.0
         var isdecimal = false
