@@ -232,10 +232,20 @@
             android:id="@+id/btnEquals"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:text="@string/equals"
             android:backgroundTint="@color/grey"
             android:textColor="@color/black"
+            android:layout_margin="4dp"
+            />
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/delete"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/grey"
             android:layout_margin="4dp"
             />
     </LinearLayout>
